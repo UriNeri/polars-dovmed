@@ -1,0 +1,126 @@
+{
+  "_metadata": {
+    "generated_by": "polars_dovmed.schema_utils",
+    "version": "1.0",
+    "description": "JSON schema for biological coordinate extraction from literature"
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Biological Coordinate Extraction Response",
+  "description": "Schema for LLM responses extracting biological coordinates and metadata",
+  "type": "object",
+  "properties": {
+    "is_relevant": {
+      "type": "string",
+      "enum": [
+        "relevant",
+        "insufficient",
+        "not_relevant",
+        "parsing_error"
+      ],
+      "description": "Indicates the relevance of the manuscript to the biological concept"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Brief summary explaining the relevance determination",
+      "minLength": 1
+    },
+    "coordinate_list": {
+      "type": "array",
+      "description": "List of coordinate information for biological entities",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": [
+              "Binding site",
+              "DNA element",
+              "Enzyme",
+              "Gene",
+              "Protein domain",
+              "RNA element",
+              "RNA structure",
+              "Regulatory sequence"
+            ],
+            "description": "The biological concept of interest. Must be one of: Binding site, DNA element, Enzyme, Gene, Protein domain"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "RNA",
+              "DNA",
+              "Protein"
+            ],
+            "description": "Type of biological molecule"
+          },
+          "organism": {
+            "type": "string",
+            "description": "Taxid/taxon_id or virus/species/organism name. Examples: Homo sapiens, Mus musculus, Escherichia coli... Empty string if not mentioned."
+          },
+          "database": {
+            "type": "string",
+            "enum": [
+              "DDBJ",
+              "EMBL",
+              "IMG/M",
+              "PDB",
+              "ensembl",
+              "ncbi_genbank",
+              "ncbi_refseq",
+              "protein_data_bank",
+              "rfam",
+              "uniprot",
+              ""
+            ],
+            "description": "Source database for identifiers. Must be one of: DDBJ, EMBL, IMG/M, PDB, ensembl..."
+          },
+          "accession": {
+            "type": "string",
+            "description": "Unique accession/identifier (e.g., NM_001234, P12345, PF00001). Empty string if not available."
+          },
+          "start": {
+            "type": "string",
+            "pattern": "^(|[0-9]+)$",
+            "description": "Start position as string (e.g., '100'). Empty string if not available."
+          },
+          "end": {
+            "type": "string",
+            "pattern": "^(|[0-9]+)$",
+            "description": "End position as string (e.g., '200'). Empty string if not available."
+          },
+          "strand": {
+            "type": "string",
+            "enum": [
+              "1",
+              "-1",
+              ""
+            ],
+            "description": "Strand orientation for nucleic acids. '1' for forward/positive, '-1' for reverse/negative. Empty string for proteins or when not specified."
+          },
+          "sequence": {
+            "type": "string",
+            "description": "Specific nucleic acid or amino acid sequence. Empty string if not provided."
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "organism",
+          "database",
+          "accession",
+          "start",
+          "end",
+          "strand",
+          "sequence"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "is_relevant",
+    "reason",
+    "coordinate_list"
+  ],
+  "additionalProperties": false
+}

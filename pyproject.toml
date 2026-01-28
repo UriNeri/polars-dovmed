@@ -1,0 +1,95 @@
+[project]
+name = "polars_dovmed"
+version = "0.1.0"
+description = "Polars powered information retrivel from NCBI's Pubmed OA literature"
+authors = [
+    { name = "Uri Neri", email = "uri.neri@gmail.com" },
+    { name = "Simon Roux", email = "notgivingyouallmyfirendsemail@example.com" },
+    { name = "Frederik Schulz", email = "notgivingyouallmyfirendsemail@example.com" },
+    { name = "Yumary Vasquez", email = "notgivingyouallmyfirendsemail@example.com" },
+]
+readme = "README.md"
+requires-python = ">= 3.10"
+license = { file = "License" }
+keywords = ["literature", "polars", "xml-processing"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Rust",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "polars>=1.37.1,<2",
+    "rich>=14.0.0,<15",
+    "tqdm>=4.67.1,<5",
+    "requests>=2.32.5,<3",
+    "numpy<2",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = ["jupyter>=1.1.1,<2", "ipython>=9.4.0,<10", "ipdb>=0.13.13,<0.14"]
+test = ["pytest>=7.0", "pytest-xdist>=3.0"]
+
+[project.scripts]
+dovmed = "polars_dovmed.cli:main"
+
+
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[tool.maturin]
+python-source = "src"
+module-name = "polars_dovmed.xml_processor"
+manifest-path = "xml_processor/Cargo.toml"
+features = ["pyo3/extension-module"]
+
+
+[tool.pixi.workspace]
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+# Default environment - for building and development
+[tool.pixi.pypi-dependencies]
+polars_dovmed = { path = ".", editable = true }
+
+[tool.pixi.dependencies]
+python = ">=3.10,<3.12"
+pip = ">=25.1.1,<26"
+rust = ">=1.88.0,<1.89"
+maturin = ">=1.0,<2"
+rust-src = ">=1.88.0,<2"
+gcc = ">=15.1.0,<15.2"
+cmake = ">=4.0.3,<5"
+gxx = ">=15.1.0,<15.2"
+jupyter = ">=1.1.1,<2"
+ipython = ">=9.4.0,<10"
+pytest = ">=7.0"
+pytest-xdist = ">=3.0"
+
+[tool.pixi.tasks]
+build = "maturin develop --release --manifest-path xml_processor/Cargo.toml"
+format = "ruff check --select I --fix src && ruff format src"
+test-import = "python -c 'import xml_processor; print(\"XML processor imported successfully\")'"
+test = "pytest tests/ -v"
+test-smoke = "pytest tests/test_smoke.py -v"
+test-all = "pytest tests/ -v --tb=short"
+
+# Separate feature/environment for just exploring notebooks (no build tools)
+[tool.pixi.feature.notebooks.dependencies]
+python = ">=3.10,<3.12"
+jupyter = ">=1.1.1,<2"
+ipython = ">=9.4.0,<10"
+
+[tool.pixi.feature.notebooks.tasks]
+notebook = "jupyter notebook"
+lab = "jupyter lab"
+
+[tool.pixi.environments]
+default = ["notebooks"]
+dev = { features = [], solve-group = "default" }
+notebooks-only = { features = ["notebooks"], no-default-feature = true }

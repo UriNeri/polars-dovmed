@@ -1,0 +1,52 @@
+{
+    "genbank": [
+        "\\b[A-Z]{4}\\d{5,8}(?:\\.\\d+)?\\b",
+        "\\b(?:AF|AB|AC|AE|AH|AJ|AM|AY|DQ|EF|EU|FJ|GQ|GU|HM|HQ|JF|JN|JQ|JX|KC|KF|KJ|KM|KP|KR|KT|KU|KX|KY|LC|LN|LT|MF|MG|MH|MK|MN|MT|MW|MZ|OL|OM|ON|OO|OP|OQ|OR|OS|OT|OU|OV|OW|OX|OY|OZ)\\d{6,9}(?:\\.\\d+)?\\b",
+        "\\b[ABCDEFGHIJKLMNOPQRSTUVWXYZ]\\d{5,8}(?:\\.\\d+)?\\b",
+        "\\b[A-Z]{4}\\d{8,10}(?:\\.\\d+)?\\b",
+        "\\b[A-Z]{6}\\d{6,8}(?:\\.\\d+)?\\b",
+        "\\bGenBank:?\\s*([A-Z]{1,4}\\d{5,10}(?:\\.\\d+)?)\\b",
+        "\\bNCBI:?\\s*([A-Z]{1,4}\\d{5,10}(?:\\.\\d+)?)\\b",
+        "\\bEMBL:?\\s*([A-Z]{1,4}\\d{5,10}(?:\\.\\d+)?)\\b",
+        "\\bDDBJ:?\\s*([A-Z]{1,4}\\d{5,10}(?:\\.\\d+)?)\\b"
+    ],
+    "refseq": [
+        "\\b(?:NC_|NM_|NR_|XM_|XR_|NP_|XP_|NG_|NT_|NW_|NZ_|AC_|AP_|NT_|NW_|NZ_)\\d{6,9}(?:\\.\\d+)?\\b",
+        "\\b(?:YP_|ZP_|WP_)\\d{6,9}(?:\\.\\d+)?\\b",
+        "\\bRefSeq:?\\s*((?:NC_|NM_|NR_|XM_|XR_|NP_|XP_|NG_|NT_|NW_|NZ_|AC_|AP_|YP_|ZP_|WP_)\\d{6,9}(?:\\.\\d+)?)\\b"
+    ],
+    "assembly": [
+        "\\b(?:GCA_|GCF_)\\d{9}(?:\\.\\d+)?\\b",
+        "\\b[A-Z]{4}\\d{8,10}(?:\\.\\d+)?\\b",
+        "\\b(?:scaffold|contig|chromosome)[-_]?\\d+\\b",
+        "\\bAssembly:?\\s*(GC[AF]_\\d{9}(?:\\.\\d+)?)\\b",
+        "\\bGenome:?\\s*(GC[AF]_\\d{9}(?:\\.\\d+)?)\\b",
+        "\\b(?:CM|CP|CU|CY|AP|AE|BA|BX|AL|CT|CW|DS|DP|DQ|FO|HE|HF|HG|HL|HM|HN|HP|HQ|HS|HT|HU|JH|JI|KB|KF|KI|KJ|KK|KL|KM|KN|KO|KP|KQ|KR|KS|KT|KU|KV|KW|KX|KY|KZ|LA|LB|LC|LD|LE|LF|LG|LH|LI|LJ|LK|LL|LM|LN|LO|LP|LQ|LR|LS|LT|LU|LV|LW|LX|LY|LZ)\\d{6,9}(?:\\.\\d+)?\\b"
+    ],
+    "uniprot": [
+        "\\b[A-NR-Z][0-9][A-Z][A-Z0-9][A-Z0-9][0-9]\\b",
+        "\\b[OPQ][0-9][A-Z0-9][A-Z0-9][A-Z0-9][0-9]\\b",
+        "\\b(?:NP_|XP_|YP_|ZP_|WP_)\\d{6,9}(?:\\.\\d+)?\\b",
+        "\\bUniProt:?\\s*([A-NR-Z][0-9][A-Z][A-Z0-9][A-Z0-9][0-9]|[OPQ][0-9][A-Z0-9][A-Z0-9][A-Z0-9][0-9])\\b",
+        "\\bPDB:?\\s*([0-9][A-Z0-9]{3})\\b"
+    ],
+    "general_accessions": [
+        "accession\\s*(?:number|code|ID)?s?",
+        "(?:GenBank|NCBI|RefSeq|EMBL|DDBJ)\\s*(?:accession|ID|number)",
+        "(?:genome|assembly|chromosome|scaffold|contig)\\s*(?:accession|ID|number)",
+        "(?:SRA|BioProject|BioSample)\\s*(?:accession|ID|number)",
+        "(?:WGS|TSA|TLS)\\s*(?:accession|ID|number)",
+        "(?:protein|nucleotide|sequence)\\s*(?:accession|ID|number)",
+        "(?:deposited|submitted|available)\\s*(?:under|with|at)\\s*(?:accession|ID|number)",
+        "(?:assigned|given|obtained)\\s*(?:accession|ID|number)",
+        "(?:registered|archived|stored)\\s*(?:under|with|at)\\s*(?:accession|ID|number)",
+        "ID\\s*:",
+        "accession\\s*:",
+        "(?:database|repository)\\s*(?:accession|ID|number)",
+        "(?:sequence|genome|assembly)\\s*(?:is|was)\\s*(?:deposited|submitted|available)",
+        "(?:supplementary|additional)\\s*(?:data|sequences|genomes)\\s*(?:available|deposited)",
+        "(?:raw|sequence)\\s*(?:data|reads)\\s*(?:available|deposited|submitted)",
+        "(?:whole|complete)\\s*(?:genome|sequence)\\s*(?:available|deposited|submitted)",
+        "(?:draft|complete)\\s*(?:assembly|genome)\\s*(?:available|deposited|submitted)"
+    ]
+}

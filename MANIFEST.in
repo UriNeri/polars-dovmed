@@ -1,0 +1,21 @@
+# Include essential files
+include README.md
+include License
+include pyproject.toml
+
+# Include the Rust extension source code
+recursive-include xml_processor *.rs
+include xml_processor/Cargo.toml
+include xml_processor/pyproject.toml
+
+# Include Python source files
+recursive-include src *.py
+
+# Exclude build artifacts and caches
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store
+prune xml_processor/target
+prune .pixi
+prune logs
+prune draft

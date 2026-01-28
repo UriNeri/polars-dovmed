@@ -1,0 +1,1 @@
+dovmed scan --parquet-pattern "data/pubmed_central/parquet_files/worker_00/batch_000[1-3].parquet" --simple-mode test_simple_patterns.txt --output-path results/simple_mode_test --verbose

@@ -1,0 +1,105 @@
+{
+  "coordinate_patterns": [
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": {"IN": ["nucleotide", "nucleotides", "nt"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+       {"TEXT": {"IN": ["-", "–", "−", "..","to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}}
+      ],
+      "id": "nucleotide_range"
+    },
+    {
+      "label": "COORDINATES", 
+      "pattern": [
+        {"LOWER": {"IN": ["position", "positions"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+       {"TEXT": {"IN": ["-", "–", "−", "..","to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}}
+      ],
+      "id": "position_range"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": "bp"},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+       {"TEXT": {"IN": ["-", "–", "−", "..","to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}}
+      ],
+      "id": "bp_range_prefix"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+       {"TEXT": {"IN": ["-", "–", "−", "..","to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+        {"LOWER": "bp"}
+      ],
+      "id": "bp_range_suffix"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": "nt"},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+        {"TEXT": {"IN": ["-", "–", "−","..", "to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}}
+      ],
+      "id": "nt_range_prefix"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+        {"TEXT": {"IN": ["-", "–", "−","..", "to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+        {"LOWER": "nt"}
+      ],
+      "id": "nt_range_suffix"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": {"IN": ["residue", "residues", "amino", "aa"]}},
+        {"LOWER": {"IN": ["acid", "acids"]}, "OP": "?"},
+        {"TEXT": {"REGEX": "^\\d{1,4}$"}},
+        {"TEXT": {"IN": ["-", "–", "−","..", "to"]}},
+        {"TEXT": {"REGEX": "^\\d{1,4}$"}}
+      ],
+      "id": "residue_range"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": {"IN": ["coordinate", "coordinates", "locus", "loci"]}},
+        {"TEXT": {"REGEX": "^\\d{2,9}$"}},
+        {"TEXT": ":"},
+        {"TEXT": {"REGEX": "^\\d{2,9}$"}}
+      ],
+      "id": "genomic_coordinates"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": {"IN": ["region", "sequence", "segment", "fragment"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}},
+        {"TEXT": {"IN": ["-", "–", "−","..", "to"]}},
+        {"TEXT": {"REGEX": "^\\d{2,7}$"}}
+      ],
+      "id": "sequence_region"
+    },
+    {
+      "label": "COORDINATES",
+      "pattern": [
+        {"LOWER": {"IN": ["base", "bases", "basepair", "basepairs"]}},
+        {"TEXT": {"REGEX": "^\\d{1,7}$"}},
+        {"TEXT": {"IN": ["-", "–", "−", "..", "to"]}},
+        {"TEXT": {"REGEX": "^\\d{1,7}$"}}
+      ],
+      "id": "base_range"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+    "aa_coordinates": [
+        "\\baa\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\b(?:from|between)\\s+(?:residue?|positions?|aa)\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\b(?:residues?|amino acids?)\\s+\\d{1,7}[-–−]\\d{1,7}\\b"
+    ],
+    "xna_coordinates": [
+        "\\bnucleotides?\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\bbp\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\bnt\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\b(?:from|between)\\s+(?:nucleotides?|positions?|bp|nt)\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\b(?:bases?|basepairs?)\\s+\\d{1,7}[-–−]\\d{1,7}\\b"
+    ],
+    "general_coordinates": [
+        "\\bpositions?\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\bcoordinates?\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\bregion\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\bspan\\s+\\d{1,7}[-–−]\\d{1,7}\\b",
+        "\\brange\\s+\\d{1,7}[-–−]\\d{1,7}\\b"
+    ]
+}

@@ -1,0 +1,6 @@
+# Test patterns for simple mode
+bacteria
+microbe
+pathogen
+infection
+antibiotic

@@ -1,0 +1,14 @@
+{
+  "entity_labels": {
+    "ACCS": "ACCESSION",
+    "DB": "DATABASE", 
+    "TOOL": "TOOL",
+    "COORD": "COORDINATES",
+    "MSA": "MSA",
+    "SEQ": "SEQUENCE",
+    "RNA_ELEMENT": "RNA_ELEMENT",
+    "TAX": "TAXONOMY",
+    "ORG": "ORGANISM",
+    "PROT": "PROTEIN"
+  }
+}

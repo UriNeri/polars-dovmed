@@ -1,0 +1,241 @@
+{
+    "SEQUENCE": [
+        "fasta",
+        "fa",
+        "fna",
+        "ffn",
+        "faa",
+        "fastq",
+        "fq",
+        "sff",
+        "abi",
+        "scf",
+        "gb",
+        "genbank",
+        "embl",
+        "pir",
+        "nexus",
+        "nex",
+        "seq"
+    ],
+    "MSA": [
+        "fasta",
+        "aln",
+        "clu",
+        "clustal",
+        "sto",
+        "stockholm",
+        "msf",
+        "phy",
+        "phylip",
+        "nex",
+        "nexus",
+        "a2m",
+        "afa",
+        "maf"
+    ],
+    "STRUCTURE": [
+        "pdb",
+        "mmcif",
+        "cif",
+        "mmtf",
+        "gro",
+        "psf",
+        "dcd",
+        "trr",
+        "xtc",
+        "mol2",
+        "sdf",
+        "xyz",
+        "top",
+        "prmtop"
+    ],
+    "GENOME_ANNOTATION": [
+        "gff",
+        "gff3",
+        "gtf",
+        "bed",
+        "bed12",
+        "bedgraph",
+        "wig",
+        "bigwig",
+        "bw",
+        "broadPeak",
+        "narrowPeak",
+        "bedpe"
+    ],
+    "PHYLOGENY": [
+        "nwk",
+        "newick",
+        "nhx",
+        "nexus",
+        "nex",
+        "tree",
+        "phyloxml",
+        "trprobs",
+        "dnd"
+    ],
+    "VARIANT": [
+        "vcf",
+        "bcf",
+        "gvf",
+        "snp",
+        "indel",
+        "hapmap"
+    ],
+    "SEQUENCE_QUALITY": [
+        "fastq",
+        "fq",
+        "qual",
+        "sff"
+    ],
+    "ALIGNMENT": [
+        "sam",
+        "bam",
+        "cram",
+        "psl",
+        "axt",
+        "maf",
+        "lav"
+    ],
+    "MOTIF": [
+        "meme",
+        "jaspar",
+        "pssm",
+        "transfac",
+        "sites",
+        "matrix"
+    ],
+    "EXPRESSION": [
+        "counts",
+        "htseq",
+        "rsem",
+        "tpm",
+        "fpkm",
+        "cufflinks",
+        "bedgraph"
+    ],
+    "MICROARRAY": [
+        "cel",
+        "gpr",
+        "idat",
+        "xys"
+    ],
+    "METAGENOMICS": [
+        "biom"
+    ],
+    "PROTEOMICS": [
+        "mzml",
+        "mzxml",
+        "mgf",
+        "dta",
+        "ms2",
+        "msp",
+        "pep.xml",
+        "prot.xml"
+    ],
+    "PATHWAY": [
+        "sbml",
+        "kgml",
+        "gpml",
+        "sif"
+    ],
+    "NETWORK": [
+        "sif",
+        "gml",
+        "graphml",
+        "xgmml",
+        "cyjs"
+    ],
+    "IMAGING": [
+        "tiff",
+        "czi",
+        "DICOM",
+        "nd2",
+        "lsm",
+        "scn"
+    ],
+    "SINGLE_CELL": [
+        "loom",
+        "h5ad",
+        "mtx"
+    ],
+    "GENERAL_TABULAR": [
+        "csv",
+        "tsv",
+        "xls",
+        "xlsx",
+        "txt"
+    ],
+    "COMPRESSED": [
+        "gz",
+        "bz2",
+        "zip",
+        "tar",
+        "zstd"
+    ],
+    "NOTEBOOKS": [
+        "ipynb",
+        "rmd",
+        "md"
+    ],
+    "SCRIPTS": [
+        "py",
+        "r",
+        "sh",
+        "pl",
+        "jl",
+        "rb",
+        "m",
+        "js",
+        "bat"
+    ],
+    "SERIALIZED_OBJECTS": [
+        "pkl",
+        "pickle",
+        "joblib",
+        "rds",
+        "rda",
+        "npz",
+        "npy",
+        "mat"
+    ],
+    "WORKFLOWS_AND_PIPELINES": [
+        "cwl",
+        "wdl",
+        "snakefile",
+        "nextflow",
+        "nf",
+        "yml",
+        "yaml",
+        "json",
+        "makefile",
+        "toml"
+    ],
+    "CONFIGURATION": [
+        "yml",
+        "yaml",
+        "json",
+        "ini",
+        "cfg",
+        "toml"
+    ],
+    "CONTAINERS_AND_ENVIRONMENTS": [
+        "dockerfile",
+        "singularity",
+        "env",
+        "yml",
+        "yaml"
+    ],
+    "DATABASES": [
+        "sqlite",
+        "sql",
+        "mdb"
+    ],
+    "VISUALIZATION": [
+        "svg",
+        "png",
+        "jpg",
+        "jpeg"
+    ]
+}

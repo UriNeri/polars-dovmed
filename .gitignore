@@ -23,18 +23,30 @@ data/pubmed_central/ndjson_files/
 output/BioCXML
 data/pubmed_central/*
 
-# results
-results/pubmed_central/processed_chunks/
+# misc
+src/polars_dovmed/misc/cleanup.py
 
 # python
 **/__pycache__/
+dist/
+build/
+*.egg-info/
 
 # rust
 **/target/
 .ruff_cache/
 
+# # logs
+# logs/
+# *.log
+
+# pytest
+.pytest_cache/
+
+
 # results
 results/
+results/pubmed_central/processed_chunks/
 examples/accessions_phenotypic
 results/pubmed_central/processed_literature.parquet
 data/pubmed_central/ndjson_files
@@ -53,3 +65,4 @@ src/polars_dovmed/misc/fix_bad_parsed.py
 xml_processor/tests/*
 
 
+src/polars_dovmed/xml_processor.abi3.so

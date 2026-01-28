@@ -17,6 +17,35 @@ The package contains:
 
 Use `dovmed COMMAND --help` for detailed help on any command.
 
+## Installation
+
+### For Users
+```bash
+pip install polars-dovmed
+```
+The CLI is now available as `dovmed`
+Pre-built wheels should include the Rust-accelerated XML processor for Linux, macOS, and Windows.
+
+### For Developers
+```bash
+# Clone the repository
+git clone https://github.com/urineri/polars-dovmed.git
+cd polars-dovmed
+
+# Install pixi if you don't have it (Linux only)
+curl -fsSL https://pixi.sh/install.sh | bash
+
+# Build and install in development mode
+pixi run build
+pixi install
+# you may want to install in an editable mode for development, something like:
+pixi shell
+pip install -e .
+
+```
+
+**Releasing (maintainers):** Push a git tag (`git tag v0.1.1 && git push origin v0.1.1`) to automatically build wheels for all platforms and publish to PyPI via GitHub Actions.
+
 ## Addtional functionality
 1. We provide a set of patters for extracting biological sequence coordinates from text (e.g. "the active site is located from 12 to 20"), as well as common database names and accession formats (e.g. GenBank, RefSeq).
 2. The `dovmed scan` command is powered by the [Polars](https://www.pola.rs/) library, which provides a performant and flexible datafrme library. The polars search,filter and extraction expressions are generated from a user provided query file(s). By default these are jsons contatins regex/text patterns/terms of user interest, but `--simple-mode` can be used to provide a plain text file with one pattern per line.
@@ -25,87 +54,11 @@ Use `dovmed COMMAND --help` for detailed help on any command.
 5. The collection of parquet files can be used with any other tool or query engine that supports parquet files (e.g. Spark, Polars, DuckDB, etc.).
 
 
-## Directory Structure
-```json
-polars-dovmed
-├── License
-├── README.md
-├── data
-│   └── assets
-│       ├── patterns
-│       │   ├── info.md
-│       │   ├── polars
-│       │   │   ├── coordinates.json
-│       │   │   └── identifiers.json
-│       │   └── spacy # Artifacts from attempting to use spacy for entity extraction. Not used.
-│       │       ├── coordinates.json
-│       │       ├── entity_config.json
-│       │       ├── file_formats.json
-│       │       └── taxonomy.json
-│       └── vocab
-│           ├── bioinfo_tools.json
-│           ├── databases.json
-│           └── repositories.JSON
-├── examples
-│   ├── notebooks
-│   │   ├── get_seqs_from_results.ipynb
-│   │   ├── process_llm_responses.ipynb
-│   │   ├── process_with_llm.ipynb
-│   │   └── pubmed_central.ipynb
-│   ├── phenotypic_traits
-│   │   └── phenotypic_schema.json
-│   ├── rare_earth
-│   └── rna_viruses
-├── lit_vkg.sh
-├── logs
-├── pixi.lock
-├── pyproject.toml
-├── src
-│   └── rp_exp
-│       ├── __init__.py
-│       ├── aggregate_extract_clster.py
-│       ├── combine_clean_filelists.py
-│       ├── convert_pmctargz_ndjson.py
-│       ├── convert_pubtator3_parquet.py
-│       ├── get_data
-│       │   ├── fetch_pmc_oa_ftp.sh
-│       ├── llm_convert_context_to_coord.py
-│       ├── llm_create_query_patterns.py
-│       ├── llm_utils.py
-│       ├── misc
-│       │   ├── cleanup.py
-│       │   ├── fix_bad_parsed.py
-│       │   ├── test_generic_schema.json
-│       │   ├── test_protein_schema.json
-│       │   ├── test_rna_virus_schema.json
-│       │   └── test_schema.json
-│       ├── scan_pmc.py
-│       ├── schema_utils.py
-│       └── utils.py
-└── xml_processor
-    ├── pyproject.toml
-    ├── src
-    │   ├── __init__.py
-    │   ├── lib.rs
-    │   └── nxml.rs
-    ├── target
-    └── tests
-
-```
-
-## Requirements
-- [pixi](https://pixi.sh/latest/): For environment management (all dependencies will be resolved with it)
-- polars: For data manipulation and analysis.
-- rust: for building the `xml_processor`
-
 ## Usage
 
-### Prepare the environment
-* Setup the environment: `pixi install` 
-* Initialize pixi environment: `pixi shell` (alternatively, you can run `pixi run <command>` before every following step)
-* Install the CLI: `uv pip install -e .` (this creates the `dovmed` command)
+### Quick Start (after installation)
 
-### Getting the PMC OA full-text collection
+### 0.1 Getting the PMC OA full-text collection
 pmc_oa is divided based on license: oa_comm (commercial), oa_noncomm (noncommercial), oa_other (see [terms of use here](https://pmc.ncbi.nlm.nih.gov/tools/openftlist/) for more info).  
 For your convinience, we have provided a script to download the full-text collection based on the subsets.
 #### Download pmc_oa subsets
@@ -115,7 +68,7 @@ dovmed download oa_comm oa_other \
     --max-connections 5 \
     --verbose
 ```  
- Or download all subsets:
+Or download all subsets:
  ```bash 
 dovmed download oa_comm oa_noncomm oa_other \
     --output-dir data/pubmed_central \
@@ -125,27 +78,20 @@ dovmed download oa_comm oa_noncomm oa_other \
 
 **Note**: This will create the directory structure:
 ```
-data/pubmed_central/
-└── pmc_oa/
-    ├── oa_comm/
-    │   ├── filelists.parquet
-    │   └── *.tar.gz files
-    ├── oa_noncomm/
-    │   ├── filelists.parquet  
-    │   └── *.tar.gz files
-    └── oa_other/
-        ├── filelists.parquet
-        └── *.tar.gz files
+pmc_oa/
+├── oa_comm/
+│   └── *.tar.gz files
+├── oa_noncomm/
+│   └── *.tar.gz files
+└── oa_other/
+    └── *.tar.gz files
 ```  
-These targz files from NCBI can weigh in at ~100-200GB, so make sure you have enough space to store them.
+These tar.gz files from NCBI can weigh in at ~100-200GB, so make sure you have enough space to store them.
 
-#### Converting pmc_oa to parquet
-1. installing the xml processor:
-```bash
-pixi run build-xml-processor
-```
+#### 2. Convert pmc_oa to parquet
+**Note!**, this is a "lossy" conversion - some of the XML tags are lost in this process.  
 
-2. Batch conversion to parquets  
+Batch conversion to parquets:  
 ```bash
 dovmed build-parquet \
     --pmc-oa-dir data/pubmed_central/pmc_oa/ \
@@ -156,17 +102,16 @@ dovmed build-parquet \
     --verbose --log-file logs/convert_pmctargz_parquet.log
 ```
 
-This creates the directory structure:
+This creates batched parquet files organized by worker directories:
 ```
-data/pubmed_central/parquet_files/
+parquet_files/
 ├── worker_00/
 │   ├── batch_0001.parquet
 │   └── batch_0002.parquet
 ├── worker_01/
 │   └── batch_0001.parquet
 └── worker_02/
-    ├── batch_0001.parquet
-    └── batch_0002.parquet
+    └── batch_0001.parquet
 ```
 
 ### Create the query file
@@ -194,7 +139,7 @@ The terms and patterns can be simple regexs, and ideally lean on special chars. 
 **NOTE** - these doens't support all regex syntax tricks you may be used to from perl, bash or python defaults' (e.g. no lookahead or forwards), because the backend is [rust's regex crate](https://docs.rs/regex/latest/regex/#syntax). 
 The disqualifying_terms are an OPTIONAL list of terms that if any of them is present in the text, the entire manuscript will be ignored. I recommend using this to remove "false positives" papers, which might match your patterns but are not relevant, like alternative acronym disambiguating - for example if you are looking for "ALS" (the amyotrophic lateral sclerosis disease) you can add "advance light source" to the disqualifying_terms list to avoid potential "collisions".
 
-For your convenience, you can use the `create-patterns` command to generate a query file based on your input text. This requires access to any Open-AI compatible provider (e.g. litellm, openai, openrouter). The script contains a predefined system-message, also in `data/assets/patterns/system_prompt.txt` (if you do not have access to an LLM inference API, you can try copy pasting this txt file to a "free" webchat, followed by your input text). Similarly, we used this text to creata Google ["gem"](https://gemini.google.com/gem/17xzHaBNx6T-5nbQ0KJPHKHaKctK0sUCa?usp=sharing) with the same instructions.
+For your convenience, you can use the `create-patterns` command to generate a query file based on your input text. This requires access to any Open-AI compatible provider (e.g. litellm, openai, openrouter). The script contains a predefined system-message, also in [`data/assets/patterns/system_prompt.txt`](data/assets/patterns/system_prompt.txt) (if you do not have access to an LLM inference API, you can try copy pasting this txt file to a "free" webchat, followed by your input text). Similarly, we used this text to creata Google ["gem"](https://gemini.google.com/gem/17xzHaBNx6T-5nbQ0KJPHKHaKctK0sUCa?usp=sharing) with the same instructions.
 ```bash
 dovmed create-patterns \
     --input-text "RNA secondary strucutre elements and motifs used in the genomes of RNA viruses" \
@@ -214,7 +159,43 @@ Note: you might want to first test only using a small subset of the parquet file
 ```bash
   --parquet-pattern "data/pubmed_central/pmc_oa/parquet_files/worker_00/*01.parquet" 
 ```  
-For more detailed (live) resource usage, I recommend using `top` externally and tracking the memory usage.
+For more detailed (live) resource usage, I recommend using `top` externally and tracking the memory usage. For troubleshooting the queries, you can also enable verbose logging with `--verbose` and `--log-file` to get more detailed logs.
+
+tl;dr:
+```bash
+$ dovmed scan --help
+Unified Literature Processing Pipeline with Polars Lazy Evaluation
+
+options:
+  -h, --help            show this help message and exit
+  --parquet-pattern PARQUET_PATTERN
+                        Glob pattern for parquet files (e.g., 'data/pubmed_central/parquet_files/*/*.parquet')
+  --queries-file QUERIES_FILE
+                        JSON file containing search queries (required unless using --simple-mode)
+  --output-path OUTPUT_PATH
+                        Output path for processed data (without extension)
+  --search-columns SEARCH_COLUMNS
+                        Columns to search for patterns
+  --identifier-patterns-file IDENTIFIER_PATTERNS_FILE
+                        JSON file containing identifier patterns
+  --coordinate-patterns-file COORDINATE_PATTERNS_FILE
+                        JSON file containing coordinate patterns
+  --extract-matches {primary,secondary,both,none}
+                        Which queries to extract matches for: primary, secondary, both, or none
+  --secondary-queries-file SECONDARY_QUERIES_FILE
+                        JSON file containing secondary search queries to apply after primary filtering
+  --secondary-search-columns SECONDARY_SEARCH_COLUMNS
+                        Columns to search for secondary patterns (comma-separated). If not provided, uses same columns as primary search
+  --add-group-counts {primary,secondary,both}
+                        Add columns counting matches for each pattern group: primary, secondary, or both
+  --min-queries-per-match MIN_QUERIES_PER_MATCH
+                        Filter the results to only keep those that are matched by at least this many different query groups
+  --log-file LOG_FILE   Path to log file for detailed logs
+  --verbose             Enable verbose logging
+  --simple-mode SIMPLE_MODE
+                        Simple mode: provide a text file with one pattern per line instead of JSON queries
+```
+
 
 #### Standard Mode (JSON queries)
 A typical scan command would be:
@@ -249,7 +230,7 @@ dovmed scan \
 - Cannot be used together with `--queries-file` or `--secondary-queries-file`
 
 #### **Note**
-The `scan` command uses some polars magic to parallelize over the different parquet filesl in a somewhat efficent way. By default, it will use all available CPUs, but you can limit the number by setting the `POLARS_MAX_THREADS` environment variable BEFORE running the script, e.g.:
+The `scan` command uses some polars magic to parallelize over the different parquet files in a somewhat efficient way. By default, it will use all available CPUs, but you can limit the number by setting the `POLARS_MAX_THREADS` environment variable BEFORE running the script, e.g.:
 ```bash
 export POLARS_MAX_THREADS=16
 ```
@@ -314,12 +295,10 @@ L --> N[Optimize & Flatten<br/>pl.struct + map_elements<br/>convert nested cols]
 end
 
 %% Output from scan_pmc
-N --> O[Save Results<br/>results/processed_literature/]
-
-
+N --> O[Save Results<br/>Flattened CSV + Parquet]
 
 %% Final Outputs
-O --> FINAL2[Processed Literature Results<br/>Matched papers with:<br/>- concept matches<br/>- extracted coordinates<br/>- group counts]
+O --> FINAL2[Analysis Results<br/>Matched papers with:<br/>- concept matches<br/>- extracted coordinates<br/>- group counts]
 
 
 %% Styling
@@ -339,7 +318,16 @@ class O,B,D output
 class FINAL1,FINAL2,VERIFICATION final
 ```
 
-
+## Citation
+If you use polars-dovmed in your research, please cite the following preprint:
+```
+@article{neri2026polarsdovmed,
+  title={polars-dovmed: polars powered python package for Local Information Retrieval from the PubMed Central Open Access subset},
+  author={Neri, Uri and Roux, Simon and Schulz, Frederik and Vasquez, Yumary},
+  journal={bioRxiv},
+  year={2026},
+  publisher={Cold Spring Harbor Laboratory}
+}
 
 
 ****************************

@@ -1,0 +1,110 @@
+{
+  "taxonomy_and_identification": [
+    ["phylum", "class", "order"],
+    ["family", "genus", "species"],
+    ["type strain|serotype|strain|isolate"],
+    ["taxonomy|classification|identification"]
+  ],
+  "cell_morphology": [
+    ["cell shape", "rod-like|rod|coccus|cocci|bacillus|spirilla|spiral|vibrio|curved|filamentous|branched"],
+    ["cell length|cell width|cell size|cell diameter"],
+    ["gram stain|gram-positive|gram-negative|gram staining"],
+    ["capsule|flagella|pili|fimbriae|cell wall|endospore|exospore"]
+  ],
+  "colony_morphology": [
+    ["colony size|colony shape|colony color|colony morphology"],
+    ["colony", "circular|irregular|rhizoid|filamentous|punctiform|smooth|rough|mucoid"],
+    ["motility|spore formation|biofilm formation|swarming"]
+  ],
+  "flagella_and_motility": [
+    ["flagellum arrangement", "peritrichous|polar|lateral|monopolar|bipolar"],
+    ["motility|chemotaxis|taxis|movement|swimming|gliding"]
+  ],
+  "oxygen_tolerance": [
+    ["aerobe|aerotolerant|anaerobe|facultative aerobe|facultative anaerobe|microaerophile|microaerotolerant|obligate aerobe|obligate anaerobe"],
+    ["oxygen requirement|aerobic|anaerobic|microaerophilic"]
+  ],
+  "temperature_growth": [
+    ["\\btemp\\b growth|\\btemp\\b optimum|temperature range"],
+    ["thermophilic|mesophilic|psychrotrophic|psychrophilic|thermotolerant|heat tolerance|hyperthermophilic"]
+  ],
+  "ph_growth": [
+    ["\\bph\\b growth|\\bph\\b optimum|\\bph\\b range"],
+    ["acidophilic|alkaliphilic|neutrophilic|acidotolerant|alkalitolerant|\\bph\\b tolerance"]
+  ],
+  "salt_tolerance": [
+    ["salt\\(nacl\\) growth|salt\\(nacl\\) optimum|salt tolerance"],
+    ["halophilic|halotolerant|salt-sensitive|osmotic tolerance|extreme halophile|moderate halophile"]
+  ],
+  "metabolic_processes": [
+    ["metabolite utilization|\\bmet\\b utilization|metabolic pathway"],
+    ["\\bmet\\b production|enzyme activity|biochemical reaction"],
+    ["antibiotic sensitive|antibiotic resistant|antimicrobial resistance|drug resistance"],
+    ["catalase|oxidase|urease|amylase|lipase|protease"],
+    ["fermentation|respiration|photosynthesis|chemosynthesis"]
+  ],
+  "nutrition_and_metabolism": [
+    ["nutrition type", "d-glucose|maltose|sucrose|carbohydrate metabolism"],
+    ["nitrate|esculin|trehalose|nitrogen metabolism|nitrite|ammonia"],
+    ["d-mannitol|d-mannose|d-fructose|sugar metabolism|xylose|arabinose"],
+    ["lactose|l-arabinose|glucose|d-ribose|cellobiose|raffinose|gelatin|melibiose|amino acid metabolism"],
+    ["citrate|malate|succinate|acetate|propionate|butyrate"],
+    ["autotrophic|heterotrophic|mixotrophic|chemolithotrophic|photoautotrophic"]
+  ],
+  "rare_earth_elements": [
+    ["acthanide|cerium|neodymium|lanthanide|lanthanum|europium|gadolinium|terbium"],
+    ["methylotrophic|methanotrophic"],
+    ["rare earth element|\\bree\\b"],
+    ["scandium|yttrium|praseodymium|samarium|dysprosium|holmium|erbium|thulium|ytterbium|lutetium"]
+  ],
+  "completeness": [
+    ["completeness", "complete|incomplete|finished|draft"],
+    ["genome completeness|assembly completeness"],
+    ["\\bcheckm\\b|\\bbusco\\b|completeness score"],
+    ["high quality|medium quality|low quality", "genome|assembly"]
+  ],
+  "contamination": [
+    ["contamination", "contaminated|pure|clean"],
+    ["genome contamination|assembly contamination"],
+    ["contaminant|cross-contamination|chimeric"],
+    ["decontamination|purification|quality control"]
+  ],
+  "rna_and_genetic_code": [
+    ["\\btrna\\b count|transfer \\brna\\b count|\\btrna\\b genes"],
+    ["genetic code|translation table|codon usage"],
+    ["\\brrna\\b genes|ribosomal \\brna\\b genes"],
+    ["\\btrna\\b|transfer \\brna\\b", "leucine|serine|arginine|glycine|alanine|valine|isoleucine|threonine"]
+  ],
+  "isolation_sources": [
+    ["countries|isolation sources|environmental samples|clinical samples|sample type"],
+    ["soil|water|marine|blood|urine|feces|wound|sputum"],
+    ["freshwater|seawater|sediment|compost|plant|root|leaf"],
+    ["hospital|clinical|environmental|food|dairy|meat"],
+    ["hot spring|thermal vent|deep sea|arctic|desert|cave"]
+  ],
+  "genome_properties": [
+    ["genome size|genome length|chromosome count|ploidity|plasmid count|genome organization"],
+    ["\\bgc\\b content|\\bgc\\b %|genomic \\bgc\\b content|base composition"],
+    ["megabase|\\bmb\\b|kilobase|\\bkb\\b|base pair|\\bbp\\b"]
+  ],
+  "available_sequences": [
+    ["\\b16s\\b rrna|\\b16s\\b sequence|\\brrna\\b gene|ribosomal \\brna\\b"],
+    ["scaffolds|contigs|assembly|whole-genome sequencing|genomic data"],
+    ["\\bwgs\\b|whole genome shotgun|draft genome|complete genome"]
+  ],
+  "api_profiles_and_fatty_acid_profiles": [
+    ["\\bapi\\b profiles|fatty acid profiles|biochemical profile"],
+    ["voges-proskauer test|methylred test|biochemical test"],
+    ["indole test|citrate test|microbiological test"],
+    ["\\bapi\\b 20e|\\bapi\\b 20ne|\\bapi\\b candida|biolog|vitek"]
+  ],
+  "cultivation_and_media": [
+    ["cultiv\\. media|\\btemp\\b range|incubation period|growth conditions|culture medium"],
+    ["\\blb\\b|luria bertani|\\btsa\\b|tryptic soy agar|\\bmrs\\b|\\bpda\\b|potato dextrose agar"],
+    ["anaerobic|aerobic|microaerophilic", "cultivation|incubation"]
+  ],
+  "disqualifying_terms": [
+    ["dynamic light scattering"],
+    ["brain imaging"]
+  ]
+}

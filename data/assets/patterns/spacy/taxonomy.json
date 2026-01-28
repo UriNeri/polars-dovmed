@@ -1,0 +1,7 @@
+{
+    "taxonomy": [
+        "\\btaxid:?\\s*\\d{1,7}\\b",
+        "\\bNCBI:?\\s*taxid:?\\s*\\d{1,7}\\b",
+        "\\btaxonomy:?\\s*(?:ID|identifier):?\\s*\\d{1,7}\\b"
+    ]
+}

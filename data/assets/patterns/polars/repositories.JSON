@@ -1,0 +1,25 @@
+{
+    "repositories": [
+        "repository",
+        "database",
+        "databank",
+        "archive",
+        "collection",
+        "resource",
+        "portal",
+        "huggingface",
+        "registry",
+        "catalog",
+        "repository",
+        "warehouse",
+        "vault",
+        "store",
+        "depot",
+        "github",
+        "gitlab",
+        "bitbucket",
+        "zenodo",
+        "figshare",
+        "dataverse"
+    ]
+}
