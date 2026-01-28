@@ -1,0 +1,55 @@
+# vscode
+.vscode/
+
+# pixi environments
+.pixi
+*.egg-info
+
+# llms
+.roocode
+.cursorignore
+
+# env
+.env
+.envrc
+
+# data
+data/pubmed_central/fetched_pmc_tgzs
+data/fetched_pmc_tgzs/
+pmc_oa/
+data/pubmed_central/nxmls/
+data/pubmed_central/parquet_files/
+data/pubmed_central/ndjson_files/
+output/BioCXML
+data/pubmed_central/*
+
+# results
+results/pubmed_central/processed_chunks/
+
+# python
+**/__pycache__/
+
+# rust
+**/target/
+.ruff_cache/
+
+# results
+results/
+examples/accessions_phenotypic
+results/pubmed_central/processed_literature.parquet
+data/pubmed_central/ndjson_files
+results/pubmed_central/processed_literature.json
+results/pubmed_central/processed_literature_processed.parquet
+data/spacy/*
+results/pubmed_central/processed_literature/*
+data/pubmed_central/pubtator3
+.continue/
+**/prcoessed.parquet
+**/flattened.csv
+src/polars_dovmed/obsolete
+lit_vkg.sh
+examples/accessions_phenotypic/scratch.bash
+src/polars_dovmed/misc/fix_bad_parsed.py
+xml_processor/tests/*
+
+
